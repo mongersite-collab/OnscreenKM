@@ -1,0 +1,281 @@
+/* ===================== ONSCREENKM — KM STUDIO ===================== */
+
+#studio{padding:clamp(70px,9vw,120px) 22px;position:relative}
+
+/* ---------- دکمه‌های فضایی ---------- */
+.studio-grid{display:grid;gap:18px;max-width:var(--maxw);margin:0 auto;
+  grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+
+.space-btn{position:relative;padding:2px;border:0;background:transparent;cursor:pointer;
+  border-radius:24px;overflow:hidden;font-family:var(--ff);isolation:isolate;
+  transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.space-btn:hover{transform:translateY(-7px)}
+.space-btn:active{transform:translateY(-2px) scale(.985)}
+
+/* حلقه‌ی گردان دور دکمه */
+.space-btn::before{content:"";position:absolute;inset:-70%;z-index:0;opacity:0;
+  background:conic-gradient(from 0deg,transparent 0 62%,rgba(52,184,245,.65) 76%,
+    rgba(168,85,247,.95) 88%,rgba(255,255,255,.85) 94%,transparent 100%);
+  animation:sbSpin 4.5s linear infinite;transition:opacity .45s}
+.space-btn:hover::before,.space-btn:focus-visible::before{opacity:1}
+@keyframes sbSpin{to{transform:rotate(360deg)}}
+
+.sb-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;
+  gap:9px;padding:30px 18px 26px;border-radius:22px;border:1px solid var(--edge);
+  background:linear-gradient(160deg,rgba(20,22,58,.92),rgba(6,7,20,.94));
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow:hidden}
+
+/* ستاره‌های پس‌زمینه */
+.sb-inner::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 26%,rgba(255,255,255,.85),transparent),
+    radial-gradient(1.1px 1.1px at 72% 18%,rgba(190,215,255,.7),transparent),
+    radial-gradient(1.5px 1.5px at 84% 68%,rgba(255,255,255,.6),transparent),
+    radial-gradient(1.1px 1.1px at 32% 78%,rgba(180,200,255,.65),transparent),
+    radial-gradient(1.2px 1.2px at 56% 46%,rgba(255,255,255,.5),transparent);
+  animation:sbTwinkle 4.5s ease-in-out infinite alternate}
+@keyframes sbTwinkle{from{opacity:.25}to{opacity:.75}}
+
+/* سپر نور هنگام هاور */
+.sb-inner::after{content:"";position:absolute;top:0;bottom:0;width:44%;
+  left:-60%;pointer-events:none;transform:skewX(-18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
+  transition:left .75s cubic-bezier(.16,1,.3,1)}
+.space-btn:hover .sb-inner::after{left:120%}
+
+/* مدارگرد */
+.orbit{position:absolute;inset:8px;z-index:1;pointer-events:none;
+  animation:sbSpin 7s linear infinite;opacity:.9}
+.orbit i{position:absolute;top:-3px;left:50%;width:6px;height:6px;margin-left:-3px;
+  border-radius:50%;background:var(--blue);box-shadow:0 0 12px 3px rgba(52,184,245,.85)}
+.orbit.slow{animation-duration:11s;animation-direction:reverse;inset:16px}
+.orbit.slow i{background:var(--violet);box-shadow:0 0 12px 3px rgba(168,85,247,.8);width:5px;height:5px}
+
+.sb-icon{position:relative;z-index:2;width:54px;height:54px;display:grid;place-items:center;
+  border-radius:50%;font-size:24px;line-height:1;
+  background:radial-gradient(circle at 32% 28%,rgba(52,184,245,.4),rgba(168,85,247,.28) 60%,transparent);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 0 26px rgba(120,90,255,.35),inset 0 0 18px rgba(120,160,255,.22);
+  animation:sbFloat 5s ease-in-out infinite}
+@keyframes sbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.space-btn:hover .sb-icon{animation-duration:2.4s}
+
+.sb-title{position:relative;z-index:2;font-weight:800;font-size:16.5px;color:var(--ink);letter-spacing:-.01em}
+.sb-sub{position:relative;z-index:2;font-family:var(--ff-mono);font-size:10px;
+  letter-spacing:.16em;color:var(--faint)}
+.space-btn:hover .sb-sub{color:var(--blue)}
+
+/* ---------- پنجره‌ی استودیو ---------- */
+.studio-modal{position:fixed;inset:0;z-index:140;display:none;padding:18px;
+  align-items:center;justify-content:center;background:rgba(2,2,8,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.studio-modal.open{display:flex;animation:smFade .32s ease both}
+@keyframes smFade{from{opacity:0}to{opacity:1}}
+
+.studio-win{width:min(1120px,100%);max-height:93vh;overflow:auto;border-radius:26px;
+  border:1px solid var(--edge-strong);padding:20px 20px 26px;
+  background:linear-gradient(160deg,rgba(16,18,44,.97),rgba(5,6,18,.98));
+  box-shadow:0 40px 120px rgba(0,0,0,.65),0 0 90px rgba(120,90,255,.18);
+  animation:smRise .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes smRise{from{transform:translateY(28px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+
+.studio-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding-bottom:14px;margin-bottom:16px;border-bottom:1px solid var(--edge)}
+.studio-head h3{font-size:19px;font-weight:800;margin:0}
+.studio-head .mono{font-size:10.5px;letter-spacing:.16em;color:var(--faint)}
+.studio-close{margin-inline-start:auto;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--edge);background:rgba(255,255,255,.05);color:var(--ink);
+  font-size:19px;cursor:pointer;transition:.25s}
+.studio-close:hover{background:rgba(255,80,110,.2);border-color:rgba(255,80,110,.5);transform:rotate(90deg)}
+
+.studio-body{display:grid;gap:18px;grid-template-columns:300px 1fr}
+@media(max-width:860px){.studio-body{grid-template-columns:1fr}}
+
+.ctrls{display:flex;flex-direction:column;gap:13px}
+.ctrl{display:flex;flex-direction:column;gap:7px}
+.ctrl label{font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.ctrl label b{color:var(--blue);font-family:var(--ff-mono);font-size:11.5px;font-weight:600}
+.ctrl input[type=text],.ctrl textarea,.ctrl select,.ctrl input[type=file]{
+  width:100%;padding:11px 13px;border-radius:12px;border:1px solid var(--edge);
+  background:rgba(255,255,255,.04);color:var(--ink);font-family:var(--ff);font-size:13.5px;outline:0}
+.ctrl textarea{resize:vertical;min-height:64px;line-height:1.7}
+.ctrl input[type=text]:focus,.ctrl textarea:focus,.ctrl select:focus{
+  border-color:rgba(52,184,245,.6);box-shadow:0 0 0 3px rgba(52,184,245,.14)}
+.ctrl input[type=range]{width:100%;accent-color:#7c5cff;height:4px}
+.ctrl input[type=color]{width:100%;height:38px;border-radius:10px;border:1px solid var(--edge);
+  background:transparent;cursor:pointer;padding:2px}
+
+.seg{display:flex;flex-wrap:wrap;gap:7px}
+.seg button{flex:1 1 auto;padding:9px 12px;border-radius:11px;cursor:pointer;font-size:12.5px;
+  border:1px solid var(--edge);background:rgba(255,255,255,.04);color:var(--muted);
+  font-family:var(--ff);transition:.25s}
+.seg button:hover{color:var(--ink);border-color:rgba(255,255,255,.24)}
+.seg button.on{color:#fff;border-color:transparent;
+  background:linear-gradient(120deg,var(--blue),var(--violet));
+  box-shadow:0 6px 22px rgba(120,90,255,.4)}
+
+.stage{position:relative;display:grid;place-items:center;min-height:280px;padding:14px;
+  border-radius:18px;border:1px solid var(--edge);overflow:hidden;
+  background:
+    linear-gradient(rgba(6,7,20,.9),rgba(6,7,20,.9)),
+    repeating-conic-gradient(#0c0d1d 0 25%,#101228 0 50%) 0 0/22px 22px}
+.stage canvas,.stage video,.stage img{max-width:100%;max-height:60vh;border-radius:12px;display:block}
+.stage-empty{color:var(--faint);font-size:13.5px;text-align:center;line-height:2}
+
+.studio-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.mini-btn{position:relative;overflow:hidden;padding:11px 18px;border-radius:12px;cursor:pointer;
+  border:1px solid var(--edge);background:rgba(255,255,255,.05);color:var(--ink);
+  font-family:var(--ff);font-size:13px;font-weight:600;transition:.28s}
+.mini-btn:hover{border-color:rgba(120,160,255,.45);background:rgba(120,160,255,.12);transform:translateY(-2px)}
+.mini-btn.primary{border-color:transparent;color:#fff;
+  background:linear-gradient(120deg,var(--blue),var(--violet));
+  box-shadow:0 10px 30px rgba(120,90,255,.38)}
+.mini-btn.primary:hover{box-shadow:0 14px 40px rgba(120,90,255,.55)}
+.mini-btn.rec{border-color:rgba(255,80,110,.5);color:#ff8fa6}
+.mini-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+.studio-note{margin-top:11px;font-size:12px;color:var(--faint);line-height:1.9}
+.studio-note b{color:var(--blue);font-weight:600}
+
+.recdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#ff4d6d;
+  margin-inline-end:7px;animation:recPulse 1s infinite}
+@keyframes recPulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,77,109,.6)}
+  70%{opacity:.6;box-shadow:0 0 0 8px rgba(255,77,109,0)}}
+
+.progress-line{height:4px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:11px;display:none}
+.progress-line.on{display:block}
+.progress-line i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));transition:width .2s}
+
+/* ---------- دکمه‌های صوتی در چت ---------- */
+.voice-row{display:flex;align-items:center;gap:8px;margin-inline-start:6px}
+.voice-btn{position:relative;width:44px;height:44px;flex:0 0 44px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--edge);background:rgba(255,255,255,.05);color:var(--ice);
+  font-size:17px;display:grid;place-items:center;transition:.28s}
+.voice-btn:hover{border-color:rgba(52,184,245,.6);background:rgba(52,184,245,.14);transform:translateY(-2px)}
+.voice-btn.on{color:#fff;border-color:transparent;
+  background:linear-gradient(120deg,var(--blue),var(--violet));
+  box-shadow:0 0 26px rgba(120,90,255,.6)}
+.voice-btn.listening::after{content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid rgba(52,184,245,.55);animation:vpulse 1.3s ease-out infinite}
+@keyframes vpulse{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+
+@media(prefers-reduced-motion:reduce){
+  .space-btn::before,.orbit,.sb-icon,.sb-inner::before,.voice-btn.listening::after{animation:none!important}
+  .space-btn:hover{transform:none}
+}
+
+
+/* ============================================================
+   KM LAB — زون‌ها، نوار هوش مصنوعی، گالری نتایج
+   ============================================================ */
+
+.zone-tag{
+  display:flex; align-items:center; gap:10px;
+  margin:22px 0 12px; padding:9px 14px;
+  border:1px solid var(--edge); border-radius:14px;
+  background:linear-gradient(90deg,rgba(52,184,245,.10),rgba(168,85,247,.06),transparent);
+  position:relative; overflow:hidden;
+}
+.zone-tag::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);
+  transform:translateX(-100%); animation:zoneSweep 5.5s linear infinite;
+}
+@keyframes zoneSweep{ to{ transform:translateX(100%);} }
+.zone-tag .zi{ color:var(--blue); font-size:15px; filter:drop-shadow(0 0 8px rgba(52,184,245,.7)); }
+.zone-tag .zt{ font-weight:700; letter-spacing:.2px; }
+.zone-tag .zs{ color:var(--muted); font-size:12px; }
+
+/* ---- نوار هوش مصنوعی ---- */
+.ai-bar{
+  margin:0 0 16px; padding:14px;
+  border:1px solid rgba(168,85,247,.28); border-radius:18px;
+  background:radial-gradient(120% 140% at 100% 0%,rgba(168,85,247,.14),rgba(14,15,36,.9));
+  box-shadow:0 10px 34px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.ai-head{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; font-size:14px; }
+.ai-orb{
+  width:12px; height:12px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#fff,var(--violet) 55%,#3b0f66);
+  box-shadow:0 0 14px rgba(168,85,247,.85); animation:aiPulse 2.6s ease-in-out infinite;
+}
+@keyframes aiPulse{ 0%,100%{ transform:scale(1); opacity:.9 } 50%{ transform:scale(1.35); opacity:1 } }
+.ai-cost{
+  margin-inline-start:auto; font-size:11.5px; color:var(--ice);
+  border:1px solid var(--edge); border-radius:999px; padding:3px 10px;
+  background:rgba(52,184,245,.10);
+}
+.ai-prompt{
+  width:100%; resize:vertical; min-height:56px;
+  background:rgba(5,5,11,.6); color:var(--ink);
+  border:1px solid var(--edge); border-radius:12px; padding:10px 12px;
+  font:inherit; font-size:13.5px; line-height:1.8; outline:none;
+}
+.ai-prompt:focus{ border-color:rgba(52,184,245,.55); box-shadow:0 0 0 3px rgba(52,184,245,.12); }
+.ai-row{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+.ai-go,.ai-dice{
+  border:1px solid var(--edge); border-radius:12px; padding:9px 14px;
+  color:var(--ink); font:inherit; font-size:13px; cursor:pointer;
+  background:rgba(255,255,255,.04); transition:transform .18s, box-shadow .18s, background .18s;
+}
+.ai-go{ background:linear-gradient(135deg,rgba(52,184,245,.9),rgba(168,85,247,.9)); border-color:transparent; font-weight:700; }
+.ai-go:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(120,90,255,.35); }
+.ai-dice:hover{ transform:translateY(-2px); background:rgba(255,255,255,.08); }
+.ai-bar.thinking .ai-orb{ animation-duration:.7s; }
+.ai-plan{ display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; min-height:4px; }
+.ai-plan .chip{
+  font-size:11.5px; color:var(--ice); padding:3px 9px; border-radius:999px;
+  border:1px solid var(--edge); background:rgba(52,184,245,.08); animation:chipIn .35s ease both;
+}
+.ai-plan .chip.kw{ background:rgba(168,85,247,.10); }
+@keyframes chipIn{ from{ opacity:0; transform:translateY(6px) } to{ opacity:1; transform:none } }
+.ai-plan .ai-warn{ font-size:12px; color:#ffb4b4; }
+.ai-plan .ai-think{ font-size:12px; color:var(--muted); }
+
+/* ---- گالری نتایج ---- */
+.km-gallery{
+  border:1px solid var(--edge); border-radius:18px; padding:14px;
+  background:linear-gradient(180deg,rgba(20,22,58,.55),rgba(10,11,28,.55));
+}
+.gal-head{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
+.gal-title{ font-weight:700; color:var(--ice); }
+.gal-count{ font-size:11.5px; color:var(--muted); border:1px solid var(--edge); border-radius:999px; padding:2px 9px; }
+.gal-tog,.gal-clear{
+  font:inherit; font-size:12px; cursor:pointer; color:var(--ink);
+  background:rgba(255,255,255,.04); border:1px solid var(--edge);
+  border-radius:10px; padding:5px 11px; transition:background .18s, transform .18s;
+}
+.gal-tog{ margin-inline-start:auto; }
+.gal-tog.on{ background:rgba(52,184,245,.18); border-color:rgba(52,184,245,.4); }
+.gal-tog:hover,.gal-clear:hover{ background:rgba(255,255,255,.09); transform:translateY(-1px); }
+.gal-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
+.gal-empty{ grid-column:1/-1; text-align:center; color:var(--muted); font-size:13px; padding:22px 10px; }
+.gal-item{
+  margin:0; position:relative; border-radius:14px; overflow:hidden;
+  border:1px solid var(--edge); background:#05050b;
+  animation:chipIn .35s ease both; transition:transform .2s, box-shadow .2s, border-color .2s;
+}
+.gal-item:hover{ transform:translateY(-3px); border-color:rgba(52,184,245,.45); box-shadow:0 14px 30px rgba(0,0,0,.45); }
+.gal-item img{ width:100%; display:block; aspect-ratio:16/10; object-fit:cover; }
+.gal-item figcaption{ display:flex; flex-direction:column; gap:2px; padding:8px 10px; font-size:11.5px; }
+.gal-item figcaption b{ color:var(--ice); font-weight:600; }
+.gal-item figcaption span{ color:var(--muted); font-size:10.5px; }
+.gal-acts{
+  position:absolute; inset:auto 0 0 0; display:flex; gap:6px; padding:8px;
+  background:linear-gradient(180deg,transparent,rgba(5,5,11,.92));
+  opacity:0; transform:translateY(8px); transition:opacity .2s, transform .2s;
+}
+.gal-item:hover .gal-acts{ opacity:1; transform:none; }
+.ga-btn{
+  flex:1; font:inherit; font-size:11px; cursor:pointer; color:var(--ink);
+  border:1px solid var(--edge); border-radius:9px; padding:5px 4px;
+  background:rgba(255,255,255,.07);
+}
+.ga-btn:hover{ background:rgba(52,184,245,.25); }
+.ga-btn.del:hover{ background:rgba(255,90,90,.3); }
+
+@media (max-width:640px){
+  .gal-grid{ grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); }
+  .zone-tag .zs{ display:none; }
+}
