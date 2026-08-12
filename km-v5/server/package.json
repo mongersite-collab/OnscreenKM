@@ -1,0 +1,13 @@
+{
+  "name": "km-security-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OnscreenKM security server - auth gate, developer code, per-tool token ledger. Zero dependencies.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check config.js && node --check lib/secure.js && node --check lib/store.js && node --check lib/mailer.js"
+  },
+  "engines": { "node": ">=18" },
+  "license": "UNLICENSED"
+}

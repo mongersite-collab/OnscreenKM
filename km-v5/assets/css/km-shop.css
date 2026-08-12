@@ -1,0 +1,250 @@
+/* ============================================================
+   KM — درگاه خرید دولپر توکن + چیدمان کهکشانی ورود + کتابخانه
+   ============================================================ */
+
+/* ---------- چیدمان دوستونه‌ی صفحه‌ی ورود ---------- */
+.ka-shell{
+  position:relative; z-index:2;
+  width:min(1180px, 94vw);
+  display:grid; grid-template-columns:minmax(340px,460px) 1fr;
+  gap:26px; align-items:stretch;
+  animation:kaRise .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.ka-shell .ka-card{ margin:0; width:100%; max-height:88vh; overflow:auto; }
+.ka-left{ display:flex; }
+
+.ka-right{
+  position:relative; border-radius:26px; overflow:hidden;
+  border:1px solid rgba(120,150,255,.18);
+  background:#05060f;
+  box-shadow:0 30px 90px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.03);
+  min-height:520px;
+}
+.ka-right::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 110%, rgba(52,184,245,.16), transparent 60%);
+}
+.ka-space{ position:absolute; inset:0; }
+.ka-space-cv{ display:block; width:100%; height:100%; }
+.ka-right-cap{
+  position:absolute; inset-inline:18px; bottom:16px; z-index:3;
+  display:flex; flex-direction:column; gap:3px;
+  padding:11px 14px; border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(5,6,15,.55); backdrop-filter:blur(8px);
+}
+.ka-right-cap b{ font-size:12.5px; color:var(--ice); letter-spacing:.3px; }
+.ka-right-cap span{ font-size:11.5px; color:var(--muted); line-height:1.7; }
+
+@media (max-width:980px){
+  .ka-shell{ grid-template-columns:1fr; }
+  .ka-right{ min-height:280px; order:-1; }
+}
+
+/* ---------- دکمه‌های پنل حساب ---------- */
+.hud-act{
+  width:100%; margin-top:8px; font:inherit; font-size:12.5px; cursor:pointer;
+  padding:9px 12px; border-radius:12px; color:var(--ink);
+  border:1px solid var(--edge); background:rgba(255,255,255,.05);
+  transition:transform .18s, background .18s, box-shadow .18s;
+}
+.hud-act:hover{ transform:translateY(-2px); background:rgba(255,255,255,.10); }
+.hud-act.buy{
+  border-color:transparent; font-weight:700;
+  background:linear-gradient(135deg,rgba(52,184,245,.92),rgba(168,85,247,.92));
+}
+.hud-act.buy:hover{ box-shadow:0 12px 28px rgba(120,90,255,.35); }
+
+/* ---------- زبانه‌ی شناور خرید (وسط سمت راست) ---------- */
+#kmShopTab{
+  position:fixed; right:0; left:auto; top:50%; transform:translateY(-50%);
+  z-index:12800; display:flex; align-items:center;
+  font-family:inherit; cursor:pointer;
+}
+#kmShopTab .st-edge{
+  display:flex; flex-direction:column; align-items:center; gap:7px;
+  padding:16px 10px; border-radius:18px 0 0 18px;
+  border:1px solid rgba(52,184,245,.35); border-right:none;
+  background:linear-gradient(160deg,rgba(52,184,245,.22),rgba(168,85,247,.20));
+  backdrop-filter:blur(10px);
+  box-shadow:-8px 0 30px rgba(0,0,0,.45);
+  color:var(--ink); font-size:12px; letter-spacing:.4px;
+  writing-mode:vertical-rl; text-orientation:mixed;
+  transition:transform .25s, box-shadow .25s;
+}
+#kmShopTab:hover .st-edge,
+#kmShopTab.open .st-edge{ transform:translateX(-4px); box-shadow:-14px 0 40px rgba(80,120,255,.4); }
+#kmShopTab .st-orb{
+  writing-mode:horizontal-tb; width:12px; height:12px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#fff,var(--blue) 55%,#0b3f66);
+  box-shadow:0 0 14px rgba(52,184,245,.9); animation:hudPulse 2.4s ease-in-out infinite;
+}
+
+/* حباب پیشنهاد هنگام هاور */
+#kmShopTab .st-pop{
+  position:absolute; right:100%; left:auto; top:50%;
+  transform-origin:right center;
+  transform:translateX(40px) translateY(-50%) scaleX(.72);
+  width:min(320px, 78vw); margin-right:12px;
+  padding:16px; border-radius:20px; text-align:start;
+  border:1px solid var(--edge);
+  background:linear-gradient(180deg,rgba(20,22,58,.97),rgba(8,9,22,.97));
+  box-shadow:0 26px 60px rgba(0,0,0,.6);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .26s ease, transform .36s cubic-bezier(.22,1,.36,1), visibility .26s;
+}
+#kmShopTab:hover .st-pop,
+#kmShopTab:focus-within .st-pop,
+#kmShopTab.open .st-pop{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform:translateX(0) translateY(-50%) scaleX(1);
+}
+.st-pop h4{ margin:0 0 6px; font-size:14.5px; color:var(--ice); }
+.st-pop p{ margin:0 0 10px; font-size:12px; line-height:1.9; color:var(--muted); }
+.st-pop .st-price{ color:var(--ink); font-weight:700; }
+.st-pop .st-go{
+  width:100%; font:inherit; font-size:13px; font-weight:700; cursor:pointer;
+  padding:9px 12px; border-radius:12px; border:none; color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+}
+.st-pop .st-go:hover{ filter:brightness(1.08); }
+
+/* ---------- مدال خرید ---------- */
+.km-modal{
+  position:fixed; inset:0; z-index:12500; display:none;
+  align-items:center; justify-content:center; padding:22px;
+  background:rgba(3,4,10,.72); backdrop-filter:blur(10px);
+}
+.km-modal.open{ display:flex; animation:kaFade .3s ease both; }
+.km-win{
+  width:min(720px, 96vw); max-height:90vh; overflow:auto;
+  border-radius:24px; padding:22px;
+  border:1px solid var(--edge);
+  background:radial-gradient(120% 100% at 100% 0%,rgba(168,85,247,.16),rgba(12,13,32,.98));
+  box-shadow:0 40px 100px rgba(0,0,0,.7);
+  animation:kaRise .4s cubic-bezier(.2,.8,.2,1) both;
+}
+.km-win h3{ margin:0 0 4px; font-size:19px; }
+.km-win .km-sub{ margin:0 0 16px; font-size:12.5px; color:var(--muted); line-height:1.9; }
+.km-x{
+  float:inline-end; font:inherit; font-size:16px; line-height:1; cursor:pointer;
+  width:34px; height:34px; border-radius:50%; color:var(--ink);
+  border:1px solid var(--edge); background:rgba(255,255,255,.05);
+}
+.km-x:hover{ background:rgba(255,90,90,.28); }
+
+.pk-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-bottom:16px; }
+.pk{
+  cursor:pointer; text-align:center; padding:14px 10px; border-radius:16px;
+  border:1px solid var(--edge); background:rgba(255,255,255,.04);
+  transition:transform .18s, border-color .18s, background .18s;
+}
+.pk:hover{ transform:translateY(-3px); background:rgba(255,255,255,.08); }
+.pk.on{ border-color:rgba(52,184,245,.65); background:rgba(52,184,245,.14); }
+.pk b{ display:block; font-size:20px; background:linear-gradient(135deg,#fff,var(--blue) 50%,var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.pk span{ display:block; font-size:11px; color:var(--muted); margin-top:4px; }
+.pk i{ display:block; font-style:normal; font-size:10px; color:var(--ice); margin-top:6px; }
+
+.buy-row{ display:flex; gap:10px; align-items:end; flex-wrap:wrap; margin-bottom:14px; }
+.buy-row .fld{ flex:1; min-width:170px; }
+.buy-row label{ display:block; font-size:11.5px; color:var(--muted); margin-bottom:6px; }
+.buy-row input{
+  width:100%; font:inherit; font-size:14px; color:var(--ink);
+  padding:10px 12px; border-radius:12px; outline:none;
+  border:1px solid var(--edge); background:rgba(5,5,11,.6);
+}
+.buy-row input:focus{ border-color:rgba(52,184,245,.55); box-shadow:0 0 0 3px rgba(52,184,245,.12); }
+.buy-total{
+  padding:12px 14px; border-radius:14px; font-size:13.5px;
+  border:1px solid rgba(52,184,245,.3); background:rgba(52,184,245,.10);
+}
+.buy-total b{ color:var(--ice); font-size:16px; }
+.buy-go{
+  width:100%; margin-top:14px; font:inherit; font-size:14.5px; font-weight:700;
+  cursor:pointer; padding:13px; border-radius:14px; border:none; color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  transition:transform .18s, box-shadow .18s;
+}
+.buy-go:hover{ transform:translateY(-2px); box-shadow:0 16px 40px rgba(120,90,255,.4); }
+.buy-go[disabled]{ opacity:.6; cursor:progress; }
+.buy-note{
+  margin-top:14px; padding:12px 14px; border-radius:14px; font-size:12px; line-height:2;
+  color:var(--ice); border:1px dashed rgba(168,85,247,.42); background:rgba(168,85,247,.08);
+}
+.buy-note b{ color:#fff; letter-spacing:.5px; }
+.buy-state{ margin-top:12px; font-size:12.5px; line-height:1.9; }
+.buy-state.err{ color:#ffb4b4; }
+.buy-state.ok{ color:#9ff3c4; }
+.gw-badge{
+  display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--muted);
+  border:1px solid var(--edge); border-radius:999px; padding:3px 10px; margin-bottom:12px;
+}
+
+/* ---------- کتابخانه‌ی کامل ---------- */
+.lib-tabs{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; }
+.lib-tabs button{
+  font:inherit; font-size:12px; cursor:pointer; color:var(--ink);
+  padding:6px 12px; border-radius:999px;
+  border:1px solid var(--edge); background:rgba(255,255,255,.04);
+}
+.lib-tabs button.on{ background:rgba(52,184,245,.2); border-color:rgba(52,184,245,.45); }
+.lib-group{ margin-bottom:18px; }
+.lib-group h5{
+  margin:0 0 8px; font-size:12.5px; color:var(--ice); display:flex; gap:8px; align-items:center;
+}
+.lib-group h5 em{ font-style:normal; font-size:10.5px; color:var(--muted); }
+
+
+/* ===== کد جیمیل به سبک OpenAI ===== */
+.ka-otp-head{text-align:center;margin-bottom:14px}
+.ka-otp-head .oi{
+  width:52px;height:52px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;
+  font-size:1.5rem;border:1px solid var(--edge);
+  background:linear-gradient(160deg,rgba(52,184,245,.18),rgba(168,85,247,.18));
+}
+.ka-otp-head h4{margin:0 0 6px;font-size:1.05rem;color:var(--ink)}
+.ka-otp-head p{margin:0;font-size:.82rem;color:var(--muted);line-height:1.9}
+.ka-otp-head b{color:var(--ice)}
+.otp-boxes{display:flex;gap:9px;justify-content:center;direction:ltr;margin:16px 0 12px}
+.otp-boxes input{
+  width:46px;height:56px;text-align:center;font-size:1.35rem;font-weight:700;
+  border-radius:14px;border:1px solid var(--edge);background:rgba(0,0,0,.4);color:var(--ink);
+  transition:.15s;
+}
+.otp-boxes input:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(52,184,245,.18)}
+.otp-boxes input.filled{border-color:rgba(52,184,245,.55)}
+.ka-otp-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:.78rem;color:var(--muted)}
+.ka-otp-foot button{background:none;border:0;color:var(--blue);cursor:pointer;font:inherit;padding:0}
+.ka-otp-foot button:disabled{color:var(--muted);cursor:default}
+.ka-otp-note{margin-top:12px;font-size:.74rem;line-height:1.9;color:var(--muted);text-align:center}
+
+/* ===== مرکز هوش پیشرفته ===== */
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:8px}
+.hub-card{
+  padding:18px;border-radius:20px;cursor:pointer;text-align:right;
+  border:1px solid var(--edge);background:rgba(255,255,255,.03);transition:.2s;
+}
+.hub-card:hover{transform:translateY(-3px);border-color:rgba(52,184,245,.5);background:rgba(52,184,245,.09)}
+.hub-card .hi{font-size:1.4rem;color:var(--blue)}
+.hub-card b{display:block;margin:8px 0 4px;font-size:.95rem;color:var(--ice)}
+.hub-card span{display:block;font-size:.76rem;color:var(--muted);line-height:1.8}
+.hub-card i{display:inline-block;margin-top:9px;font-style:normal;font-size:.72rem;color:var(--violet)}
+.nav-ai{color:var(--blue) !important;font-weight:700}
+
+/* ===== دکمه‌ی ساختن ===== */
+.ai-make{
+  flex:1;padding:11px 14px;border:0;border-radius:14px;cursor:pointer;font:inherit;font-weight:800;
+  color:#04121f;background:linear-gradient(90deg,var(--blue),var(--violet));
+  box-shadow:0 10px 30px rgba(52,184,245,.22);
+}
+.ai-make:disabled{opacity:.55;cursor:progress}
+
+
+/* ---------- پیام پایان تولید و لینک درگاه ---------- */
+.ai-done{display:inline-block;margin-inline-end:8px;padding:5px 12px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(52,184,245,.22),rgba(168,85,247,.22));
+  border:1px solid rgba(52,184,245,.45);color:#cfe4ff;font-size:12px;font-weight:700;
+  animation:kmPop .45s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes kmPop{from{opacity:0;transform:translateY(6px) scale(.92)}to{opacity:1;transform:none}}
+.ai-warn{color:#ffd9a0}
+.pay-link{color:#34b8f5;text-decoration:underline;font-weight:700}
