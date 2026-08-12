@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پرداخت دولپر توکن — OnscreenKM</title>
+<link rel="icon" href="assets/media/favicon.ico">
+<script src="assets/js/km-pay-config.js"></script>
+<style>
+  :root{--void:#05050b;--blue:#34b8f5;--violet:#a855f7;--ink:#f2f4ff;--muted:#8c90b3}
+  *{box-sizing:border-box}
+  body{background:var(--void);color:var(--ink);font-family:Vazirmatn,system-ui,sans-serif;margin:0;
+       min-height:100vh;display:grid;place-items:center;padding:24px}
+  .box{width:min(640px,96vw);border:1px solid rgba(255,255,255,.09);border-radius:26px;padding:26px;
+       background:radial-gradient(120% 100% at 100% 0%,rgba(168,85,247,.16),rgba(12,13,32,.98));
+       box-shadow:0 40px 100px rgba(0,0,0,.7)}
+  h1{margin:0 0 6px;font-size:20px}
+  .sub{margin:0 0 18px;font-size:13px;color:var(--muted);line-height:2}
+  .inv{border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px;margin-bottom:16px;
+       background:rgba(0,0,0,.35);font-size:14px;line-height:2.2}
+  .inv b{color:#cfe4ff}
+  .row{display:flex;justify-content:space-between;gap:12px}
+  .go{display:block;width:100%;text-align:center;text-decoration:none;padding:14px;border-radius:16px;
+      font-weight:800;color:#04121f;background:linear-gradient(90deg,var(--blue),var(--violet));border:0;
+      cursor:pointer;font-family:inherit;font-size:15px;margin-bottom:10px}
+  .ghost{display:block;width:100%;text-align:center;padding:12px;border-radius:16px;cursor:pointer;
+         background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--ink);
+         font-family:inherit;font-size:13.5px;margin-bottom:10px;text-decoration:none}
+  .ghost:hover{background:rgba(255,255,255,.09)}
+  .setup{border:1px solid rgba(52,184,245,.3);background:rgba(52,184,245,.06);border-radius:16px;
+         padding:14px;font-size:12.5px;line-height:2;color:#cfe4ff;margin-bottom:14px;display:none}
+  .setup input{width:100%;margin:8px 0;padding:11px 12px;border-radius:12px;background:rgba(0,0,0,.45);
+               border:1px solid rgba(255,255,255,.12);color:var(--ink);font-family:inherit;font-size:13px;
+               direction:ltr;text-align:left}
+  .setup button{width:100%;padding:11px;border-radius:12px;border:0;cursor:pointer;font-family:inherit;
+                font-weight:700;color:#04121f;background:linear-gradient(90deg,var(--blue),var(--violet))}
+  .note{border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.08);border-radius:16px;
+        padding:14px;font-size:12.5px;line-height:2.1;color:#d9c7ff}
+  .ok{color:#7ee7b0;font-size:12px;display:none;margin-top:6px}
+  code{background:rgba(0,0,0,.5);padding:2px 6px;border-radius:6px;font-size:12px;direction:ltr;display:inline-block}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>✦ پرداخت دولپر توکن</h1>
+  <p class="sub">فاکتور زیر را بررسی کن و پرداخت را انجام بده.</p>
+
+  <div class="inv">
+    <div class="row"><span>شماره‌ی فاکتور</span><b id="pOrder">—</b></div>
+    <div class="row"><span>تعداد دولپر توکن</span><b id="pAmount">—</b></div>
+    <div class="row"><span>قیمت هر توکن</span><b>۱٬۰۰۰ تومان</b></div>
+    <div class="row"><span>مبلغ قابل پرداخت</span><b id="pTotal">—</b></div>
+  </div>
+
+  <a class="go" id="payGo" href="#">◉ رفتن به درگاه پرداخت</a>
+  <a class="ghost" id="waBtn" href="#" target="_blank" rel="noopener">◈ پرداخت با پشتیبانی (واتس‌اپ)</a>
+  <a class="ghost" id="tgBtn" href="#" target="_blank" rel="noopener">◈ پرداخت با پشتیبانی (تلگرام)</a>
+  <button class="ghost" id="copyBtn">◈ کپی شماره‌ی فاکتور</button>
+  <button class="ghost" id="setBtn">⚙ تنظیم درگاه (ویژه‌ی مدیر)</button>
+  <a class="ghost" href="index.html">← بازگشت به سایت</a>
+
+  <div class="setup" id="setupBox">
+    لینک درگاه پرداخت خودت را اینجا بچسبان (ویپاد ، زرین‌پال ، ایدی‌پی ، نکست‌پی). فقط یک بار لازم است و روی این مرورگر ذخیره می‌شود.
+    <input id="linkIn" placeholder="https://vipad.ir/pay/onscreenkm" dir="ltr">
+    <button id="saveBtn">ذخیره و فعال‌سازی درگاه</button>
+    <div class="ok" id="okMsg">✓ درگاه فعال شد — حالا دکمه‌ی بالا مستقیم به درگاه می‌رود.</div>
+    برای دائمی کردن روی همه‌ی دستگاه‌ها: همین لینک را در <code>assets/js/km-pay-config.js</code> در خط <code>KM_PAY_LINK</code> بگذار، یا کلید رسمی را در <code>server/.env</code> در <code>KM_VIPAD_API_KEY</code> ثبت کن.
+  </div>
+
+  <div class="note">
+    اگر مشکلی برای خرید توکن شما ایجاد شد، می‌توانید به شماره‌ی <b>09928839272</b> در ایران با پسوند <b>+98 992 883 9272</b>، یا به همین حساب در تمامی پیام‌رسان‌ها (واتس‌اپ · تلگرام · ایتا · بله · روبیکا) مراجعه و پیگیری کنید.
+  </div>
+</div>
+
+<script>
+(function () {
+  var LKEY = "km_pay_link_v1";
+  var q = new URLSearchParams(location.search);
+  var order = q.get("order") || "KM-LOCAL";
+  var amount = parseInt(q.get("amount"), 10) || 10;
+  var total = parseInt(q.get("total"), 10) || amount * 1000;
+  var phone = (window.KM_SUPPORT || "09928839272").replace(/^0/, "98");
+
+  function fa(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u066c"); }
+
+  function saved() {
+    try { return (localStorage.getItem(LKEY) || "").trim(); } catch (e) { return ""; }
+  }
+
+  function payLink() {
+    return (saved() || (window.KM_PAY_LINK || "")).trim();
+  }
+
+  document.getElementById("pOrder").textContent = order;
+  document.getElementById("pAmount").textContent = fa(amount) + " \u062a\u0648\u06a9\u0646";
+  document.getElementById("pTotal").textContent = fa(total) + " \u062a\u0648\u0645\u0627\u0646";
+
+  var msg = "\u0633\u0644\u0627\u0645\u060c \u0645\u06cc\u200c\u062e\u0648\u0627\u0647\u0645 " + amount +
+    " \u062f\u0648\u0644\u067e\u0631 \u062a\u0648\u06a9\u0646 OnscreenKM \u0628\u062e\u0631\u0645. " +
+    "\u0645\u0628\u0644\u063a: " + total + " \u062a\u0648\u0645\u0627\u0646 \u00b7 " +
+    "\u0634\u0645\u0627\u0631\u0647\u200c\u06cc \u0641\u0627\u06a9\u062a\u0648\u0631: " + order;
+
+  document.getElementById("waBtn").href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+  document.getElementById("tgBtn").href = "https://t.me/+" + phone + "?text=" + encodeURIComponent(msg);
+
+  var go = document.getElementById("payGo");
+
+  function applyLink() {
+    var link = payLink();
+    if (link) {
+      var sep = link.indexOf("?") > -1 ? "&" : "?";
+      go.href = link + sep + "amount=" + total + "&order=" + encodeURIComponent(order);
+      go.target = "_blank";
+      go.rel = "noopener";
+      go.textContent = "\u25c9 \u0631\u0641\u062a\u0646 \u0628\u0647 \u062f\u0631\u06af\u0627\u0647 \u067e\u0631\u062f\u0627\u062e\u062a";
+      go.style.opacity = "1";
+      go.onclick = null;
+    } else {
+      go.removeAttribute("target");
+      go.href = "#";
+      go.textContent = "\u25c9 \u067e\u0631\u062f\u0627\u062e\u062a \u0648 \u062f\u0631\u06cc\u0627\u0641\u062a \u062a\u0648\u06a9\u0646";
+      go.style.opacity = "1";
+      go.onclick = function (e) {
+        e.preventDefault();
+        window.open(document.getElementById("waBtn").href, "_blank", "noopener");
+      };
+    }
+  }
+
+  applyLink();
+
+  document.getElementById("setBtn").addEventListener("click", function () {
+    var b = document.getElementById("setupBox");
+    b.style.display = b.style.display === "block" ? "none" : "block";
+    document.getElementById("linkIn").value = saved();
+  });
+
+  document.getElementById("saveBtn").addEventListener("click", function () {
+    var v = document.getElementById("linkIn").value.trim();
+    if (v && !/^https?:\/\//i.test(v)) v = "https://" + v;
+    try { localStorage.setItem(LKEY, v); } catch (e) { }
+    applyLink();
+    document.getElementById("okMsg").style.display = v ? "block" : "none";
+  });
+
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    var t = order + " \u00b7 " + total + " \u062a\u0648\u0645\u0627\u0646";
+    if (navigator.clipboard) navigator.clipboard.writeText(t);
+    this.textContent = "\u2713 \u06a9\u067e\u06cc \u0634\u062f";
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnscreenKM</title>
+<meta name="description" content="OnscreenKM — KM، هوش شخصی شما. درک کن. یاری کن. تکامل یاب.">
+<meta name="theme-color" content="#05050b">
+<meta name="application-name" content="OnscreenKM">
+<meta property="og:title" content="OnscreenKM">
+<meta property="og:description" content="KM — هوش شخصی شما. درک کن. یاری کن. تکامل یاب.">
+<meta property="og:image" content="assets/media/km-icon-512.png">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/km.css">
+<link rel="stylesheet" href="assets/css/km-studio.css">
+<link rel="stylesheet" href="assets/css/km-auth.css">
+<link rel="stylesheet" href="assets/css/km-shop.css">
+<link rel="icon" href="assets/media/favicon.ico" sizes="any">
+<link id="kmFavicon" rel="icon" type="image/png" sizes="64x64" href="assets/media/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/media/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/media/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/media/apple-touch-icon.png">
+<script src="assets/js/km-tab.js" defer></script>
+</head>
+<body>
+
+<div id="loader" role="status" aria-live="polite">
+  <img class="loader-logo" src="assets/media/km-logo.jpg" alt="OnscreenKM">
+  <div class="loader-word">Onscreen<span class="km-colorful">KM</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header>
+  <nav class="pill liquid-glass" id="navPill">
+    <a class="logo" href="#top"><img src="assets/media/km-logo.jpg" alt="لوگوی OnscreenKM"> KM</a>
+    <a href="#sequence">سکانس</a>
+    <a href="#pillars">در لحظه</a>
+    <a href="#core">هسته</a>
+    <a href="#try">امتحان آنلاین</a>
+    <a href="#how">نحوه کار</a>
+    <a href="#modules" class="btn-ghost" style="margin-inline-start:10px;">دانلود اپ</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="eyebrow reveal hero-reveal">ONSCREENKM // PERSONAL INTELLIGENCE</div>
+  <h1 class="reveal hero-reveal" style="transition-delay:.1s">بگو «<span class="grad accent-italic">KM</span>»،<br><span class="grad">بقیه‌اش با ماست.</span></h1>
+  <p class="lead reveal hero-reveal" style="transition-delay:.2s">دستیاری که فقط یک اپلیکیشن نیست — پلی بین تو و شهری که هوش مصنوعی دارد می‌سازدش. یک کلمه بگو، KM بیدار می‌شود.</p>
+  <div class="hero-ctas reveal hero-reveal" style="transition-delay:.3s">
+    <a href="#try" class="btn-primary">همین‌جا با KM حرف بزن ↓</a>
+    <a href="#modules" class="btn-ghost">دانلود نسخه اندروید</a>
+  </div>
+
+  <div class="scroll-cue reveal hero-reveal" style="transition-delay:.5s">
+    <span>SCROLL</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<div class="spec-strip mono reveal">
+  <div class="item"><span class="dot"></span>PRIVATE</div>
+  <div class="item"><span class="dot"></span>SECURE</div>
+  <div class="item"><span class="dot"></span>SYNC</div>
+  <div class="item"><span class="dot"></span>MULTI-PLATFORM</div>
+  <div class="item"><span class="dot"></span>PLUGGABLE</div>
+</div>
+
+<section class="manifesto">
+  <div class="manifesto-bg" aria-hidden="true"></div>
+  <div class="manifesto-scrim" aria-hidden="true"></div>
+  <blockquote class="reveal">
+    «KM قرار نیست جای آدم‌ها را بگیرد؛ قرار است <span class="accent-italic grad">فاصله‌ی بین فکر کردن و انجام دادن</span> را صفر کند. یک کلمه، یک دستور، یک جواب — همین.»
+  </blockquote>
+  <cite class="reveal" style="transition-delay:.15s">تیم ONSCREENKM</cite>
+</section>
+
+<section id="sequence">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow mono">THE SEQUENCE</div>
+      <h2>چهار پرده، از تاریکی تا هسته</h2>
+      <p>روایت بصری برند KM — همان مسیری که از یک انسان در تاریکی شروع می‌شود و به یک هوش واحد بالای زمین می‌رسد.</p>
+    </div>
+
+    <div class="chapters">
+      <article class="chapter reveal" style="transition-delay:.05s">
+        <div class="no mono">01 · AWAKENING</div>
+        <h3>انسان × هوش</h3>
+        <p>یک نفر در تاریکی مطلق راه می‌رود. ذرات آبی و بنفش در پاسخ به حرکت و فکرش زاده می‌شوند.</p>
+        <div class="d">VOLUMETRIC LIGHT · SHALLOW DEPTH</div>
+      </article>
+      <article class="chapter reveal" style="transition-delay:.1s">
+        <div class="no mono">02 · THE CITY</div>
+        <h3>شهر آینده</h3>
+        <p>دوربین بالا می‌رود: برج‌های شیشه‌ای، خودروهای خودران، پل‌های نورانی — همه با انرژی بنفش به هم وصل‌اند.</p>
+        <div class="d">AERIAL RISE · CITY SCALE</div>
+      </article>
+      <article class="chapter reveal" style="transition-delay:.15s">
+        <div class="no mono">03 · INVISIBLE</div>
+        <h3>هوش نادیدنی</h3>
+        <p>در یک اتاق مدرن، پیام‌ها و وظیفه‌ها فقط به شکل جریان نور دیده می‌شوند — بدون صفحه، بدون رابط.</p>
+        <div class="d">NO UI · ONLY ENERGY</div>
+      </article>
+      <article class="chapter reveal" style="transition-delay:.2s">
+        <div class="no mono">04 · THE CORE</div>
+        <h3>��افظه‌ی بی‌پایان</h3>
+        <p>میلیون‌ها پیوند نورانی در یک کره‌ی واحد بالای زمین جمع می‌شوند. سکوت. یک ضربان نور. عنوان.</p>
+        <div class="d">SILENCE · ONE PULSE · TITLE</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="section-head reveal">
+    <div class="eyebrow mono">ALWAYS WITH YOU</div>
+    <h2>وقتی داری فکر می‌کنی، KM هم دارد فکر می‌کند</h2>
+    <p>پیام، کار، فایل، ایمیل، سینک — همه از یک مغز واحد، دقیقاً کنار دستت.</p>
+  </div>
+
+  <div class="showcase reveal">
+    <img src="assets/media/km-desk.jpg" alt="کار شبانه کنار پنجره با دستیار هوشمند KM" loading="lazy">
+    <div class="showcase-scrim"></div>
+    <div class="showcase-overlay">
+      <div class="showcase-card liquid-glass">
+        <span class="pillar-tag">IN THE FLOW</span>
+        <h3>دستیاری که وسط کارت گمت نمی‌کند</h3>
+        <p>پیام، تقویم، فایل و ایمیل درست کنار دستت می‌چرخند — KM همان لحظه که داری کار می‌کنی حواسش هست، بدون اینکه از تمرکزت بزند بیرون.</p>
+      </div>
+      <a href="#try" class="btn-primary">امتحانش کن ↓</a>
+    </div>
+  </div>
+</section>
+
+<section id="core">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow mono">THE CORE</div>
+      <h2>یک هوش، بالای همه چیز</h2>
+      <p>میلیون‌ها پیوند نورانی در یک کره‌ی انتزاعی جمع می‌شوند — نه ربات، نه چ��ره؛ فقط هوش.</p>
+    </div>
+
+    <div class="core-wrap reveal">
+      <span class="ring" aria-hidden="true"></span>
+      <span class="ring" style="animation-delay:2s" aria-hidden="true"></span>
+      <span class="ring" style="animation-delay:4s" aria-hidden="true"></span>
+      <div class="core-orb" aria-hidden="true"></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><b class="grad" data-count="3" data-suffix="×">0</b><span>پروایدر هوش مصنوعی</span></div>
+      <div class="stat reveal" style="transition-delay:.05s"><b class="grad" data-count="100" data-suffix="٪">0</b><span>اجرا در مرورگر خودت</span></div>
+      <div class="stat reveal" style="transition-delay:.1s"><b class="grad" data-count="6">0</b><span>ماژول سیستمی</span></div>
+      <div class="stat reveal" style="transition-delay:.15s"><b class="grad" data-count="0">0</b><span>کلید ذخیره‌شده روی سرور</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="try">
+  <div class="section-head reveal">
+    <div class="eyebrow mono">TRY IT NOW — NO KEY, NO INSTALL</div>
+    <h2>همین‌جا با KM حرف بزن</h2>
+    <p>موتور داخلی خود KM — بدون کلید API، بدون سرور، کاملاً درون مرورگر خودت.</p>
+  </div>
+
+  <div class="chat-panel liquid-glass reveal">
+    <div class="chat-top">
+      <div class="who"><span class="dotlive"></span> KM آماده است</div>
+      <span class="mono" style="font-size:12px; color:var(--muted);">v5 · web</span>
+    </div>
+
+    <div class="chat-log" id="chatLog">
+      <div class="msg system-note">موتور KM کاملاً درون دستگاه خودت اجرا می‌شود — هیچ پیامی به بیرون فرستاده نمی‌شود.</div>
+      <div class="msg km">سلام. من KM هستم — هوش شخصی شما. بگو روی چه کاری هستی.</div>
+    </div>
+
+    <div class="chat-input-row">
+      <input id="chatInput" type="text" placeholder="پیامت را بنویس…" autocomplete="off">
+      <button class="send-btn" id="sendBtn">ارسال</button>
+    </div>
+    <div class="chat-notice" id="chatNotice" role="status" aria-live="polite"></div>
+
+    <div class="chips">
+      <button class="chip" data-q="اسمت چیه؟">اسمت چیه؟</button>
+      <button class="chip" data-q="چه کارهایی می‌توانی انجام دهی؟">چه کارهایی بلدی؟</button>
+      <button class="chip" data-q="ساعت چند است؟">ساعت چند است؟</button>
+      <button class="chip" data-q="۲۴ ضربدر ۱۷">۲۴ × ۱۷</button>
+      <button class="chip" data-q="یه نکته بگو">یه نکته بگو</button>
+    </div>
+
+    <div class="disclaimer">
+      موتور داخلی KM — برای گفتگو، محاسبه، زمان و تاریخ، یادداشت‌برداری و معرفی قابلیت‌ها. بدون کلید، بدون سرور، بدون هیچ سرویس بیرونی.
+    </div>
+  </div>
+</section>
+
+<section id="studio">
+  <div class="section-head reveal">
+    <div class="eyebrow mono">KM STUDIO</div>
+    <h2>ساخت و ادیت، همین‌جا</h2>
+    <p class="lead">عکس بساز، ویدیو بساز، ادیت کن، تامنیل بزن — و با KM حرف بزن. همه‌چیز داخل مرورگر خودت، بدون آپلود و بدون سرویس بیرونی.</p>
+  </div>
+
+  <div class="studio-grid">
+    <button class="space-btn reveal" data-tool="image" style="transition-delay:.05s">
+      <span class="sb-glow"></span>
+      <span class="orbit"><i></i></span>
+      <span class="orbit slow"><i></i></span>
+      <span class="sb-inner">
+        <span class="sb-icon">◎</span>
+        <span class="sb-title">طراحی عکس</span>
+        <span class="sb-sub mono">IMAGE FORGE</span>
+      </span>
+    </button>
+
+    <button class="space-btn reveal" data-tool="video" style="transition-delay:.1s">
+      <span class="sb-glow"></span>
+      <span class="orbit"><i></i></span>
+      <span class="orbit slow"><i></i></span>
+      <span class="sb-inner">
+        <span class="sb-icon">▶</span>
+        <span class="sb-title">طراحی ویدیو</span>
+        <span class="sb-sub mono">MOTION FORGE</span>
+      </span>
+    </button>
+
+    <button class="space-btn reveal" data-tool="editimg" style="transition-delay:.15s">
+      <span class="sb-glow"></span>
+      <span class="orbit"><i></i></span>
+      <span class="orbit slow"><i></i></span>
+      <span class="sb-inner">
+        <span class="sb-icon">✦</span>
+        <span class="sb-title">ادیت عکس</span>
+        <span class="sb-sub mono">PHOTO LAB</span>
+      </span>
+    </button>
+
+    <button class="space-btn reveal" data-tool="editvid" style="transition-delay:.2s">
+      <span class="sb-glow"></span>
+      <span class="orbit"><i></i></span>
+      <span class="orbit slow"><i></i></span>
+      <span class="sb-inner">
+        <span class="sb-icon">✂</span>
+        <span class="sb-title">ادیت ویدیو</span>
+        <span class="sb-sub mono">VIDEO LAB</span>
+      </span>
+    </button>
+
+    <button class="space-btn reveal" data-tool="thumb" style="transition-delay:.25s">
+      <span class="sb-glow"></span>
+      <span class="orbit"><i></i></span>
+      <span class="orbit slow"><i></i></span>
+      <span class="sb-inner">
+        <span class="sb-icon">▣</span>
+        <span class="sb-title">ساخت تامنیل</span>
+        <span class="sb-sub mono">THUMBNAIL</span>
+      </span>
+    </button>
+    <button class="space-btn reveal" data-tool="audio" style="transition-delay:.3s">
+      <span class="sb-glow"></span>
+      <span class="orbit"><i></i></span>
+      <span class="orbit slow"><i></i></span>
+      <span class="sb-inner">
+        <span class="sb-icon">♪</span>
+        <span class="sb-title">تولید صدا</span>
+        <span class="sb-sub mono">SOUND FORGE</span>
+      </span>
+    </button>
+  </div>
+</section>
+
+<section id="how">
+  <div class="section-head reveal">
+    <div class="eyebrow mono">HOW IT WORKS</div>
+    <h2>از «KM» گفتن تا جواب شنیدن</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal" style="transition-delay:.05s">
+      <div class="tl-num mono">01</div>
+      <div><h3>می‌گویی «KM»</h3><p>دستیار مداوم منتظر شنیدن اسمش است؛ همین که صدایش کنی فعال می‌شود.</p></div>
+    </div>
+    <div class="tl-item reveal" style="transition-delay:.1s">
+      <div class="tl-num mono">02</div>
+      <div><h3>دستورت را می‌گویی</h3><p>گفتارت با تشخیص گفتار به متن تبدیل می‌شود — فارسی یا هر زبان دیگر.</p></div>
+    </div>
+    <div class="tl-item reveal" style="transition-delay:.15s">
+      <div class="tl-num mono">03</div>
+      <div><h3>KM فکر می‌کند</h3><p>پیام به لایه‌ی چندپروایدر می‌رود، با بازگشت خودکار اگر یکی جواب نداد.</p></div>
+    </div>
+    <div class="tl-item reveal" style="transition-delay:.2s">
+      <div class="tl-num mono">04</div>
+      <div><h3>جواب را می‌شنوی</h3><p>پاسخ هم متنی نشان داده می‌شود، هم با صدا پخش می‌شود.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-head reveal">
+    <div class="eyebrow mono">MODULES</div>
+    <h2>همان معماری اپ اندروید، به زبان ساده</h2>
+  </div>
+  <div class="grid3">
+    <div class="mod-card liquid-glass reveal" style="transition-delay:.05s"><span class="tag">VOICE</span><h3>صدا و Wake Word</h3><p>گوش دادن مداوم، تشخیص گفتار، و پخش پاسخ با صدا.</p></div>
+    <div class="mod-card liquid-glass reveal" style="transition-delay:.1s"><span class="tag">AI</span><h3>چندپروایدر با Fallback</h3><p>Claude، OpenAI و Gemini؛ اگر یکی جواب ندهد خودکار می‌رود سراغ بعدی.</p></div>
+    <div class="mod-card liquid-glass reveal" style="transition-delay:.15s"><span class="tag">AUTOMATION</span><h3>کنترل گوشی</h3><p>فلاش‌لایت، روشنایی صفحه، وای‌فای — با رعایت کامل محدودیت‌های امنیتی اندروید.</p></div>
+    <div class="mod-card liquid-glass reveal" style="transition-delay:.05s"><span class="tag">COMMUNICATION</span><h3>مخاطبین و پیامک</h3><p>جستجوی مخاطب و ارسال پیامک، با مدیریت صحیح مجوزها.</p></div>
+    <div class="mod-card liquid-glass reveal" style="transition-delay:.1s"><span class="tag">TELEPHONY</span><h3>تماس تلفنی</h3><p>باز کردن شماره‌گیر یا تماس مستقیم (با مجوز کاربر).</p></div>
+    <div class="mod-card liquid-glass reveal" style="transition-delay:.15s"><span class="tag">CAMERA</span><h3>دوربین</h3><p>گرفتن عکس با تفویض کامل به اپ دوربین سیستم.</p></div>
+  </div>
+</section>
+
+<section id="modules" style="text-align:center;">
+  <div class="section-head reveal" style="margin-bottom:26px;">
+    <div class="eyebrow mono">GET THE APP</div>
+    <h2>نسخه اندروید هم آماده است</h2>
+    <p>همین دستیار، با همه‌ی قابلیت‌های سیستمی گوشی، به‌صورت اپلیکیشن بومی.</p>
+  </div>
+  <a href="#" class="btn-primary reveal">دانلود از Google Play (به‌زودی)</a>
+</section>
+
+</main>
+
+<footer>
+  <div>
+    <div class="logo"><img src="assets/media/km-logo.jpg" alt="لوگوی OnscreenKM"> KM</div>
+    <p>دستیار هوشمند ONSCREENKM — درک کن. یاری کن. تکامل یاب.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#sequence">سکانس</a>
+    <a href="#pillars">در لحظه</a>
+    <a href="#core">هسته</a>
+    <a href="#try">امتحان آنلاین</a>
+    <a href="#how">نحوه کار</a>
+    <a href="#modules">دانلود</a>
+  </div>
+</footer>
+
+<script src="assets/js/km-brain.js"></script>
+<script src="assets/js/km.js"></script>
+<script src="assets/js/km-voice.js"></script>
+<script src="assets/js/km-space.js"></script>
+<script src="assets/js/km-auth.js"></script>
+<script src="assets/js/km-studio.js"></script>
+  <script src="assets/js/km-lab.js"></script>
+  <script src="assets/js/km-pay-config.js"></script>
+  <script src="assets/js/km-shop.js"></script>
+</body>
+</html>
